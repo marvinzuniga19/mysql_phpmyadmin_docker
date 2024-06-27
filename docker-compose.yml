@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   db:
@@ -34,9 +34,10 @@ services:
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
+      PMA_ARBITRARY: 1
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "8080:80"
+      - "8081:80"
     depends_on:
       db:
         condition: service_healthy
