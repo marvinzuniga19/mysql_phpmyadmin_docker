@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  db:
+  mysql:
     image: mysql:5.7
     container_name: mysql_db
     restart: always
@@ -32,14 +32,13 @@ services:
     container_name: phpmyadmin
     restart: always
     environment:
-      PMA_HOST: db
+      PMA_HOST: mysql
       PMA_PORT: 3306
-      PMA_ARBITRARY: 1
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "8081:80"
     depends_on:
-      db:
+      mysql:
         condition: service_healthy
     networks:
       - my_network
@@ -56,3 +55,4 @@ volumes:
 networks:
   my_network:
     driver: bridge
+
